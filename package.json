@@ -1,6 +1,6 @@
 {
   "name": "@stdlib/stdlib",
-  "version": "0.0.87",
+  "version": "0.0.90",
   "description": "Standard library.",
   "license": "Apache-2.0 AND BSL-1.0",
   "author": {
@@ -23,6 +23,7 @@
   "main": "./lib",
   "browser": "./dist/stdlib-flat.min.js",
   "unpkg": "./dist/stdlib-flat.min.js",
+  "jsdelivr": "./dist/stdlib-flat.min.js",
   "directories": {
     "doc": "./docs",
     "example": "./examples",
@@ -72,6 +73,7 @@
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
+    "@types/node": "^12.12.12",
     "ajv": "^5.2.2",
     "browser-pack-flat": "^3.0.0",
     "browserify": "^16.1.0",
@@ -84,9 +86,6 @@
     "envify": "^4.0.0",
     "eslint": "^6.4.0",
     "factor-bundle": "^2.5.0",
-    "fastify": "^2.10.0",
-    "fastify-helmet": "^3.0.2",
-    "fastify-static": "^2.5.0",
     "istanbul": "^0.4.1",
     "jsdoc": "^3.4.0",
     "lunr": "^2.0.0",

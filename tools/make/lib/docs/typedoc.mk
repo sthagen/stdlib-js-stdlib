@@ -52,11 +52,12 @@ TYPEDOC_HTML_FLAGS ?= \
 	--excludePrivate \
 	--excludeProtected \
 	--includeDeclarations \
-	--exclude **/test*.ts \
+	--exclude '{**/*test*,**/test*.ts,**/*.js,**/*test.ts}' \
 	--name stdlib \
 	--theme $(CONFIG_DIR)/typedoc/theme/ \
 	--hideGenerator \
-	--readme $(ROOT_DIR)/README.md \
+	--readme $(CONFIG_DIR)/typedoc/index.md \
+	--gaID 'UA-105890493-1' \
 	--out $(TYPEDOC_HTML_OUT)
 
 # Define command-line options to be used when invoking the TypeDoc executable to generate TypeDoc JSON:
@@ -69,7 +70,7 @@ TYPEDOC_JSON_FLAGS ?= \
 	--excludePrivate \
 	--excludeProtected \
 	--includeDeclarations \
-	--exclude **/test*.ts \
+	--exclude '{**/*test*,**/test*.ts,**/*.js,**/*test.ts}' \
 	--name stdlib \
 	--json $(TYPEDOC_JSON)
 
@@ -94,7 +95,7 @@ typedoc_web_assets ?= $(shell find "$(DOCS_DIR)/assets/web" -type f \( -name \*.
 typedoc-html: $(NODE_MODULES) $(TYPEDOC)
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(TYPEDOC_HTML_OUT)
 	$(QUIET) $(MKDIR_RECURSIVE) $(TYPEDOC_HTML_OUT)
-	$(QUIET) $(TYPEDOC) $(TYPEDOC_HTML_FLAGS) $(SRC_DIR)
+	$(QUIET) $(NODE) --max_old_space_size=10240 $(TYPEDOC) $(TYPEDOC_HTML_FLAGS) $(SRC_DIR)
 	$(QUIET) $(CP) $(typedoc_web_assets) "$(DOCS_DIR)/assets/logo_white.svg" $(TYPEDOC_HTML_OUT)
 
 .PHONY: typedoc-html
@@ -115,7 +116,7 @@ typedoc-html: $(NODE_MODULES) $(TYPEDOC)
 typedoc-json: $(NODE_MODULES) $(TYPEDOC)
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(TYPEDOC_JSON)
 	$(QUIET) $(MKDIR_RECURSIVE) $(TYPEDOC_JSON_OUT)
-	$(QUIET) $(TYPEDOC) $(TYPEDOC_JSON_FLAGS) $(SRC_DIR)
+	$(QUIET) $(NODE) --max_old_space_size=10240 $(TYPEDOC) $(TYPEDOC_JSON_FLAGS) $(SRC_DIR)
 
 .PHONY: typedoc-json
 
