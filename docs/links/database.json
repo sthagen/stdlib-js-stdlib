@@ -258,6 +258,44 @@
       "diagram"
     ]
   },
+  "http://oeis.org/A000027": {
+    "id": "oeis-a000027",
+    "description": "The OEIS entry for the sequence of positive integers.",
+    "short_url": "",
+    "keywords": [
+      "positive",
+      "integers",
+      "natural",
+      "whole",
+      "counting",
+      "numbers"
+    ]
+  },
+  "http://oeis.org/A000037": {
+    "id": "oeis-a000037",
+    "description": "The OEIS entry for the sequence of nonsquares.",
+    "short_url": "",
+    "keywords": [
+      "squares",
+      "nonsquares",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers"
+    ]
+  },
+  "http://oeis.org/A000290": {
+    "id": "oeis-a000290",
+    "description": "The OEIS entry for the sequence of squares.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "squares",
+      "integers",
+      "numbers"
+    ]
+  },
   "http://opendatacommons.org/licenses/by/1.0/": {
     "id": "odc-by-1.0",
     "description": "Open Data Commons Attribution License.",
@@ -3222,6 +3260,30 @@
       "root"
     ]
   },
+  "https://en.wikipedia.org/wiki/Square_triangular_number": {
+    "id": "square-triangular-number",
+    "description": "Wikipedia entry for square triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "square",
+      "numbers",
+      "integers",
+      "sequences"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Squared_triangular_number": {
+    "id": "squared-triangular-number",
+    "description": "Wikipedia entry for squared triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "numbers",
+      "integers",
+      "squared",
+      "sequences"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Standard_deviation": {
     "id": "stdev",
     "description": "Wikipedia entry for the standard deviation.",
@@ -3334,6 +3396,17 @@
       "probability",
       "continuous",
       "triangular"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Triangular_number": {
+    "id": "triangular-number",
+    "description": "Wikipedia entry for triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "number",
+      "binomial",
+      "sequence"
     ]
   },
   "https://en.wikipedia.org/wiki/Truncated_normal_distribution": {
@@ -4117,6 +4190,101 @@
       "nodejs",
       "javascript",
       "js"
+    ]
+  },
+  "https://oeis.org/A000142": {
+    "id": "oeis-a000142",
+    "description": "The OEIS entry for the sequence of factorials.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "factorials",
+      "integers",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A000217": {
+    "id": "oeis-a000217",
+    "description": "The OEIS entry for triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "integers",
+      "numbers",
+      "binomial",
+      "triangular",
+      "triangle"
+    ]
+  },
+  "https://oeis.org/A000537": {
+    "id": "oeis-a000537",
+    "description": "The OEIS entry for squared triangular numbers.",
+    "short_url": "",
+    "keywords": [
+      "triangular",
+      "squared",
+      "numbers",
+      "integers",
+      "sequence"
+    ]
+  },
+  "https://oeis.org/A000578": {
+    "id": "oeis-a000578",
+    "description": "The OEIS entry for a sequence of cubes.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "seq",
+      "integers",
+      "cubes",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001057": {
+    "id": "oeis-a001057",
+    "description": "The OEIS entry for a canonical enumeration of an interleaved integer sequence.",
+    "short_url": "",
+    "keywords": [
+      "integers",
+      "sequence",
+      "interleaved",
+      "enumeration",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001477": {
+    "id": "oeis-a001477",
+    "description": "The OEIS entry for the sequence of nonnegative integers.",
+    "short_url": "",
+    "keywords": [
+      "nonnegative",
+      "integers",
+      "sequence",
+      "natural",
+      "numbers"
+    ]
+  },
+  "https://oeis.org/A001478": {
+    "id": "oeis-a001478",
+    "description": "The OEIS entry for the sequence of negative integers.",
+    "short_url": "",
+    "keywords": [
+      "sequence",
+      "integers",
+      "numbers",
+      "negative"
+    ]
+  },
+  "https://oeis.org/A001489": {
+    "id": "oeis-a001489",
+    "description": "The OEIS entry for the sequence of nonpositive integers.",
+    "short_url": "",
+    "keywords": [
+      "nonpositive",
+      "sequence",
+      "integers",
+      "numbers"
     ]
   },
   "https://oeis.org/A001690": {
