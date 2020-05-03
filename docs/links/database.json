@@ -296,6 +296,32 @@
       "numbers"
     ]
   },
+  "http://oeis.org/A005843": {
+    "id": "oeis-a005843",
+    "description": "The OEIS entry for the sequence of nonnegative even integers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers",
+      "even"
+    ]
+  },
+  "http://oeis.org/A299174": {
+    "id": "oeis-a299174",
+    "description": "The OEIS entry for the sequence of positive even integers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "integers",
+      "seq",
+      "positive",
+      "numbers"
+    ]
+  },
   "http://opendatacommons.org/licenses/by/1.0/": {
     "id": "odc-by-1.0",
     "description": "Open Data Commons Attribution License.",
@@ -2047,6 +2073,17 @@
     "keywords": [
       "cdn",
       "content delivery network"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Coprime_integers": {
+    "id": "coprime-integers",
+    "description": "Wikipedia entry for coprime integers.",
+    "short_url": "",
+    "keywords": [
+      "integers",
+      "coprime",
+      "primes",
+      "number theory"
     ]
   },
   "https://en.wikipedia.org/wiki/Covariance": {
@@ -4192,6 +4229,19 @@
       "js"
     ]
   },
+  "https://oeis.org/A000040": {
+    "id": "oeis-a000040",
+    "description": "The OEIS entry for the sequence of prime numbers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "integers",
+      "numbers",
+      "primes"
+    ]
+  },
   "https://oeis.org/A000142": {
     "id": "oeis-a000142",
     "description": "The OEIS entry for the sequence of factorials.",
@@ -4299,6 +4349,20 @@
       "integer",
       "oeis",
       "number theory"
+    ]
+  },
+  "https://oeis.org/A002808": {
+    "id": "oeis-a002808",
+    "description": "The OEIS entry for the sequence of composite numbers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "seq",
+      "primes",
+      "composite",
+      "integers",
+      "numbers"
     ]
   },
   "https://oeis.org/wiki/Lucas_polynomials": {
