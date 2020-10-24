@@ -134,7 +134,7 @@ To install external libraries (**optional**),
 $ make install-deps
 ```
 
-While external library dependencies are not always required, installing these dependencies may aid development and unlock performance benefits, especially when developing numeric computation facilities. Note, however, that installing external library dependencies may take considerable time (>30 minutes).
+While external library dependencies are not always required, installing these dependencies may aid development and unlock performance benefits, especially when developing numerical computation facilities. Note, however, that installing external library dependencies may take considerable time (>30 minutes).
 
 To install language dependencies (**optional**),
 
@@ -168,7 +168,7 @@ To initialize the development environment,
 $ make init
 ```
 
-Initializing the development environment configures [Git][git] hooks and other bells and whistles to aid in development. Git hooks are especially important as they enable automatic linting and testing to ensure that code meets style specifications and does not break.
+Initializing the development environment configures [Git][git] hooks and other bells and whistles to aid in development. [Git][git] hooks are especially important as they enable automatic linting and testing to ensure that code meets style specifications and does not break.
 
 ## Verification
 
@@ -237,6 +237,39 @@ workshops  workshops
 
     will be enough to resolve these conflicts. Otherwise, remove the [Git][git] repository, clone, and reinstall.
 
+-   Some terminal prompts display the current [Git][git] branch and its status. Displaying the status may add significant lag to your terminal. You may hide this information within the repository directory by updating the repository's [Git][git] configuration. For example, if using [GNU bash][bash],
+
+    <!-- run-disable -->
+
+    ```bash
+    $ git config bash.showDirtyState false
+    ```
+
+    or if using [Zsh][zsh],
+
+    <!-- run-disable -->
+
+    ```bash
+    $ git config --add oh-my-zsh.hide-dirty 1
+    ```
+
+-   Some shells (e.g., [Zsh][zsh]) may require quotes around environment variables to prevent the shell from expanding paths. If this is the case, wrap paths, or values which may be interpreted as paths, in quotes. For example, replace
+
+    <!-- run-disable -->
+
+    ```bash
+    $ make TESTS_FILTER=.*/<pattern>/.* test
+    ```
+    
+    with
+
+    <!-- run-disable -->
+
+    ```bash
+    $ make TESTS_FILTER=".*/<pattern>/.*" test
+    ```
+    
+
 ## Editors
 
 -   This repository uses [EditorConfig][editorconfig] to maintain consistent coding styles between different editors and IDEs, including [browsers][editorconfig-chrome].
@@ -256,7 +289,7 @@ To run select tests,
 <!-- run-disable -->
 
 ```bash
-$ make TESTS_FILTER=.*/<pattern>/.* test
+$ make TESTS_FILTER=".*/<pattern>/.*" test
 ```
 
 where `<pattern>` is a pattern matching a particular path. For example, to test only base special math functions
@@ -264,7 +297,7 @@ where `<pattern>` is a pattern matching a particular path. For example, to test 
 <!-- run-disable -->
 
 ```bash
-$ make TESTS_FILTER=.*/math/base/special/.* test
+$ make TESTS_FILTER=".*/math/base/special/.*" test
 ```
 
 where the pattern `.*/math/base/special/.*` matches any test file whose absolute path contains `math/base/special`.
@@ -274,7 +307,7 @@ To generate a test coverage report,
 <!-- run-disable -->
 
 ```bash
-$ make TESTS_FILTER=.*/<pattern>/.* test-cov
+$ make TESTS_FILTER=".*/<pattern>/.*" test-cov
 $ make view-cov
 ```
 
@@ -283,8 +316,8 @@ If you are developing a tool (i.e., code located in the `tools` directory), to r
 <!-- run-disable -->
 
 ```bash
-$ make TESTS_FILTER=.*/<pattern>/.* tools-test
-$ make TESTS_FILTER=.*/<pattern>/.* tools-test-cov
+$ make TESTS_FILTER=".*/<pattern>/.*" tools-test
+$ make TESTS_FILTER=".*/<pattern>/.*" tools-test-cov
 $ make view-cov
 ```
 
@@ -293,7 +326,7 @@ Similarly, to run benchmarks
 <!-- run-disable -->
 
 ```bash
-$ make BENCHMARKS_FILTER=.*/<pattern>/.* benchmark
+$ make BENCHMARKS_FILTER=".*/<pattern>/.*" benchmark
 ```
 
 and examples
@@ -301,7 +334,7 @@ and examples
 <!-- run-disable -->
 
 ```bash
-$ make EXAMPLES_FILTER=.*/<pattern>/.* examples
+$ make EXAMPLES_FILTER=".*/<pattern>/.*" examples
 ```
 
 ## Contributing
@@ -327,6 +360,8 @@ For contribution guidelines, see the [contributing guide][stdlib-contributing].
 [make]: https://www.gnu.org/software/make
 
 [bash]: https://www.gnu.org/software/bash/
+
+[zsh]: https://en.wikipedia.org/wiki/Z_shell
 
 [curl]: http://curl.haxx.se/
 

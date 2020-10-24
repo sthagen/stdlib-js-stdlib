@@ -18,47 +18,100 @@
 
 # VARIABLES #
 
-# Define the command for generating distributable browser bundles:
-DIST_BROWSER_BUNDLES ?= NODE_PATH="$(NODE_PATH)" $(NODE) \
-	--max_old_space_size=4096 \
-	--expose_gc \
-	$(TOOLS_PKGS_DIR)/bundle/scripts/dist_browser_bundles
+# Define the command for listing distributable bundle package directories:
+DIST_PKG_DIRS ?= NODE_PATH="$(NODE_PATH)" $(NODE) \
+	$(DIST_DIR)/scripts/bundle_dirs.js
 
-# Define the command-line options to be used when executing the command:
-DIST_BROWSER_BUNDLES_FLAGS ?=
+# Define the command for updating distributable package versions:
+DIST_UPDATE_VERSIONS ?= NODE_PATH="$(NODE_PATH)" $(NODE) \
+	$(DIST_DIR)/scripts/update_versions.js
 
-# Define the command for updating distributable browser bundle stats in the dist README:
-UPDATE_DIST_README_BROWSER_BUNDLE_STATS ?= $(NODE) $(TOOLS_PKGS_DIR)/bundle/scripts/update_dist_readme_browser_bundle_stats
-
-# Define the command-line options to be used when executing the command:
-UPDATE_DIST_README_BROWSER_BUNDLE_STATS_FLAGS ?=
+# Define the command for verifying distributable package versions:
+DIST_VERIFY_VERSIONS ?= NODE_PATH="$(NODE_PATH)" $(NODE) \
+	$(DIST_DIR)/scripts/verify_versions.js
 
 
 # RULES #
 
 #/
-# Generates distributable browser bundles.
+# Generates distributable bundles.
 #
 # @example
-# make dist-browser-bundles
+# make dist-bundles
 #/
-dist-browser-bundles: $(NODE_MODULES)
-	$(QUIET) echo 'Generating distributable browser bundles...'
-	$(QUIET) $(DIST_BROWSER_BUNDLES) $(DIST_BROWSER_BUNDLES_FLAGS)
-	$(QUIET) for file in $(DIST_DIR)/*.min.js; do \
-		echo "Compressing file: $$file"; \
-		$(GZIP) "$$file" -9 -c > "$$file".gz; \
+dist-bundles: $(NODE_MODULES)
+	$(QUIET) echo 'Generating bundles...'
+	$(QUIET) $(DIST_PKG_DIRS) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r pkg; do \
+		echo ""; \
+		echo "Building: $$pkg"; \
+		cd $$pkg; \
+		$(MAKE) NODE="$(NODE)" NODE_PATH="$(NODE_PATH)" || exit 1; \
 	done
+	$(QUIET) echo 'Compressing bundles...'
+	$(QUIET) for file in $(DIST_DIR)/*/build/*.min.js; do \
+		echo "Compressing file: $$file"; \
+		$(GZIP) "$$file" -9 -c > "$$file".gz || exit 1; \
+	done
+	$(QUIET) echo 'Finished generating bundles.'
 
-.PHONY: dist-browser-bundles
+.PHONY: dist-bundles
 
 #/
-# Updates a README file documenting distributable browser bundles to include the most recent bundle statistics.
+# Publishes packages containing distributable bundles to the npm package registry.
 #
 # @example
-# make update-dist-readme-browser-bundle-stats
+# make dist-bundles-publish
 #/
-update-dist-readme-browser-bundle-stats: $(NODE_MODULES)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS) $(UPDATE_DIST_README_BROWSER_BUNDLE_STATS_FLAGS)
+dist-bundles-publish: $(NODE_MODULES) dist-bundles
+	$(QUIET) echo 'Updating package versions...'
+	$(QUIET) $(DIST_UPDATE_VERSIONS)
+	$(QUIET) echo 'Verifying package versions...'
+	$(QUIET) $(DIST_VERIFY_VERSIONS)
+	$(QUIET) echo 'Publishing packages...'
+	$(QUIET) $(DIST_PKG_DIRS) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r pkg; do \
+		echo ""; \
+		echo "Publishing package: $$pkg"; \
+		cd $$pkg; \
+		$(NPM) publish --access public || exit 1; \
+	done
+	$(QUIET) echo 'Finished publishing packages.'
 
-.PHONY: update-dist-readme-browser-bundle-stats
+.PHONY: dist-bundles-publish
+
+#/
+# Performs a dry run of publishing packages containing distributable bundles to the npm package registry.
+#
+# @example
+# make dist-bundles-publish-dry-run
+#/
+dist-bundles-publish-dry-run: $(NODE_MODULES)
+	$(QUIET) echo '(dry run) Verifying package versions...'
+	$(QUIET) $(DIST_VERIFY_VERSIONS)
+	$(QUIET) echo '(dry run) Publishing packages...'
+	$(QUIET) $(DIST_PKG_DIRS) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r pkg; do \
+		echo ""; \
+		echo "(dry run) Publishing package: $$pkg"; \
+		cd $$pkg; \
+		$(NPM) publish --access public --dry-run || exit 1; \
+	done
+	$(QUIET) echo '(dry run) Finished publishing packages.'
+
+.PHONY: dist-bundles-publish-dry-run
+
+#/
+# Removes distributable bundle build artifacts.
+#
+# @example
+# make clean-dist-bundles
+#/
+clean-dist-bundles:
+	$(QUIET) echo 'Removing build artifacts...'
+	$(QUIET) $(DIST_PKG_DIRS) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r pkg; do \
+		echo ""; \
+		echo "Removing build artifacts for package: $$pkg"; \
+		cd $$pkg; \
+		$(MAKE) NODE="$(NODE)" NODE_PATH="$(NODE_PATH)" clean; \
+	done
+	$(QUIET) echo 'Finished removing build artifacts.'
+
+.PHONY: clean-dist-bundles

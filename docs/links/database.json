@@ -602,6 +602,18 @@
       "speech"
     ]
   },
+  "http://www.unicode.org/reports/tr29/": {
+    "id": "unicode-text-segmentation",
+    "description": "Unicode Standard Annex for Unicode text segmentation.",
+    "short_url": "",
+    "keywords": [
+      "unicode",
+      "standard",
+      "text",
+      "segmentation",
+      "nlp"
+    ]
+  },
   "http://www.yaml.org/": {
     "id": "yaml",
     "description": "Human friendly data serialization standard.",
@@ -2598,6 +2610,17 @@
       "type"
     ]
   },
+  "https://en.wikipedia.org/wiki/Identity_function": {
+    "id": "identity-function",
+    "description": "Wikipedia entry for the identity function.",
+    "short_url": "",
+    "keywords": [
+      "identity",
+      "math",
+      "function",
+      "fcn"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Index_of_dispersion": {
     "id": "variance-to-mean-ratio",
     "description": "Wikipedia entry for the variance-to-mean ratio (VMR), a measure used to quantify whether a set of observed occurrences are clustered or dispersed compared to a standard statistical model.",
@@ -3606,6 +3629,18 @@
       "character"
     ]
   },
+  "https://en.wikipedia.org/wiki/Z_shell": {
+    "id": "zsh",
+    "description": "Wikipedia for Z shell (Zsh).",
+    "short_url": "",
+    "keywords": [
+      "zsh",
+      "shell",
+      "terminal",
+      "development",
+      "dev"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Ziggurat_algorithm": {
     "id": "ziggurat-algorithm",
     "description": "Wikipedia entry for the Ziggurat algorithm to generate standard normal pseudorandom numbers.",
@@ -4291,6 +4326,16 @@
       "numbers"
     ]
   },
+  "https://oeis.org/A000584": {
+    "id": "oeis-a000584",
+    "description": "OEIS sequence for fifth powers.",
+    "short_url": "",
+    "keywords": [
+      "oeis",
+      "sequence",
+      "integers"
+    ]
+  },
   "https://oeis.org/A001057": {
     "id": "oeis-a001057",
     "description": "The OEIS entry for a canonical enumeration of an interleaved integer sequence.",
@@ -4433,6 +4478,18 @@
       "node",
       "node-js",
       "nodejs"
+    ]
+  },
+  "https://tools.ietf.org/html/rfc1952": {
+    "id": "gzip-rfc-1952",
+    "description": "RFC format for the gzip file format.",
+    "short_url": "",
+    "keywords": [
+      "gzip",
+      "compression",
+      "compress",
+      "file",
+      "format"
     ]
   },
   "https://tools.ietf.org/html/rfc3986": {
