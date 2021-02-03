@@ -28,13 +28,25 @@ limitations under the License.
 
 ### Open Source Directions: stdlib
 
-> [Athan Reines][kgryte] and [Philipp Burckhardt][planeshifter], Open Source Directions November 2019
+> [Athan Reines][kgryte] and [Philipp Burckhardt][planeshifter], Open Source Directions, November 2019
 
 <div class="image" align="center">
     <a title="Open Source Directions: stdlib" href="https://www.youtube.com/watch?v=SYbp_dr8WWo">
         <img src="https://cdn.rawgit.com/stdlib-js/stdlib/66d46fdc5aa64c904479c36c7ed3b069ecd7039d/docs/assets/talks/open_source_directions_november_2019.png" alt="Open Source Directions: stdlib (November 2019)">
     </a>
     <br>
+</div>
+
+## 2018
+
+### Machine Learning in the Browser
+
+> [Athan Reines][kgryte], ML Conference, December 2018
+
+<div class="image"  align="center">
+    <a title="Machine Learning in the Browser" href="https://www.youtube.com/watch?v=FCl1LfV9TB0">
+        <img src="https://cdn.rawgit.com/stdlib-js/stdlib/dcb20baa1bb37dfb556918a22825abddbebe3fea/docs/assets/talks/ml_conference_2018_athan_reines.png" alt="Machine Learning in the Browser (December 2018)">
+    </a>
 </div>
 
 ## 2017
