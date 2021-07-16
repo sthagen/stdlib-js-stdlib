@@ -2494,6 +2494,18 @@
       "gamma"
     ]
   },
+  "https://en.wikipedia.org/wiki/Generalized_linear_model#Link_function": {
+    "id": "generalized-linear-model-link-function",
+    "description": "Wikipedia entry for the link function within the context of a generalized linear model.",
+    "short_url": "",
+    "keywords": [
+      "glm",
+      "regression",
+      "ml",
+      "machine learning",
+      "fit"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Geometric_distribution": {
     "id": "geometric-distribution",
     "description": "Wikipedia entry for the geometric distribution.",
@@ -2610,6 +2622,18 @@
       "polynomials",
       "algorithm",
       "math"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Huber_loss": {
+    "id": "huber-loss",
+    "description": "Wikipedia entry for the Huber loss function.",
+    "short_url": "",
+    "keywords": [
+      "regression",
+      "machine learning",
+      "ml",
+      "loss function",
+      "classification"
     ]
   },
   "https://en.wikipedia.org/wiki/IEEE_floating_point": {
@@ -3069,6 +3093,19 @@
       "probability"
     ]
   },
+  "https://en.wikipedia.org/wiki/Norm_%28mathematics%29#Euclidean_norm": {
+    "id": "euclidean-norm",
+    "description": "Wikipedia page for the Euclidean norm.",
+    "short_url": "",
+    "keywords": [
+      "euclidean",
+      "norm",
+      "l2-norm",
+      "square norm",
+      "length",
+      "distance"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Normal_distribution": {
     "id": "normal-distribution",
     "description": "Wikipedia entry for the normal distribution.",
@@ -3409,6 +3446,19 @@
       "speech"
     ]
   },
+  "https://en.wikipedia.org/wiki/Stochastic_gradient_descent": {
+    "id": "stochastic-gradient-descent",
+    "description": "Wikipedia page for stochastic gradient descent (SGD).",
+    "short_url": "",
+    "keywords": [
+      "stochastic gradient descent",
+      "sgd",
+      "minimization",
+      "machine learning",
+      "classification",
+      "regression"
+    ]
+  },
   "https://en.wikipedia.org/wiki/Stop_words": {
     "id": "stopwords",
     "description": "Wikipedia entry on stop words, which are filtered from text for many natural language processing (NLP) tasks.",
@@ -3458,6 +3508,16 @@
       "typesetting",
       "knuth",
       "typography"
+    ]
+  },
+  "https://en.wikipedia.org/wiki/Tikhonov_regularization": {
+    "id": "tikhonov-regularization",
+    "description": "Wikipedia page for Tikhonov regularization.",
+    "short_url": "",
+    "keywords": [
+      "regularization",
+      "regression",
+      "l2-regularization"
     ]
   },
   "https://en.wikipedia.org/wiki/Triangular_distribution": {
