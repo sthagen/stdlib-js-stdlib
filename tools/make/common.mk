@@ -28,7 +28,7 @@ endif
 # GENERAL VARIABLES #
 
 # Define supported Node.js versions:
-NODE_VERSIONS ?= '0.10 0.12 1 2 3 4 5 6 7 8 9 10 11 12 13 14 node'
+NODE_VERSIONS ?= '0.10 0.12 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 node'
 
 # Define a license SPDX identifier whitelist:
 LICENSES_WHITELIST ?= 'Apache-2.0,Artistic-2.0,BSD-2-Clause,BSD-3-Clause,BSL-1.0,CC0-1.0,ISC,MIT,MPL-2.0,Unlicense,WTFPL'
@@ -130,6 +130,9 @@ MARKDOWN_LINTER ?= remark
 # Define the linter to use when linting shell script files:
 SHELL_LINTER ?= shellcheck
 
+# Define the linter to use when linting C files:
+C_LINTER ?= cppcheck
+
 
 # COMMANDS #
 
@@ -167,6 +170,9 @@ CAT ?= cat
 # Define the command to copy files:
 CP ?= cp
 
+# Define the command to move files:
+MV ?= mv
+
 # Define the command to recursively sync directories:
 RSYNC_RECURSIVE ?= rsync -r
 
@@ -201,9 +207,6 @@ NODE ?= node
 
 # Define the command for `npm`:
 NPM ?= npm
-
-# Define the command for generating an npm gzipped archive:
-NPM_PACK ?= npm pack
 
 # Define the command for `julia`:
 JULIA ?= julia
@@ -564,3 +567,15 @@ DEPS_SHELLCHECK_BUILD_OUT ?= $(DEPS_BUILD_DIR)/shellcheck_$(deps_shellcheck_vers
 
 # Host platform:
 DEPS_SHELLCHECK_PLATFORM := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE_HOST_PLATFORM))
+
+# Define the cppcheck version:
+DEPS_CPPCHECK_VERSION ?= 2.5
+
+# Generate a version slug:
+deps_cppcheck_version_slug := $(subst .,_,$(DEPS_CPPCHECK_VERSION))
+
+# Define the output path when building cppcheck:
+DEPS_CPPCHECK_BUILD_OUT ?= $(DEPS_BUILD_DIR)/cppcheck_$(deps_cppcheck_version_slug)
+
+# Host platform:
+DEPS_CPPCHECK_PLATFORM := $(shell command -v $(NODE) >/dev/null 2>&1 && $(NODE_HOST_PLATFORM))

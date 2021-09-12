@@ -73,7 +73,7 @@ jobs:
       - name: 'Install Node.js'
         uses: actions/setup-node@v2
         with:
-          node-version: 'lts/*'
+          node-version: '16' # 'lts/*'
         timeout-minutes: 5
 
       # Print debug info:
@@ -98,7 +98,7 @@ jobs:
       # Perform install sequence (accounting for possible network failures, etc, when installing node module dependencies):
       - name: 'Perform install sequence'
         run: |
-          npm install || npm install || npm install
+          make install-node-modules || make install-node-modules || make install-node-modules
         timeout-minutes: 30
 
       # Run the build task:

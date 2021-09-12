@@ -39,7 +39,7 @@ Developing and running stdlib **requires** the following prerequisites:
 -   [GNU bash][bash]: an sh-compatible shell
 -   [curl][curl], [wget][wget], or [fetch][fetch] (FreeBSD): utilities for downloading remote resources
 -   [Node.js][node-js]: JavaScript runtime (version `>= 0.10`; although the latest stable version is **strongly** recommended)
--   [npm][npm]: package manager (version `> 2.7.0`; if Node `< 1.0.0`, version `> 2.7.0` and `< 4.0.0`; if Node `< 6.0.0`, version `> 2.7.0` and `< 6.0.0`)
+-   [npm][npm]: package manager (version `> 2.7.0`; if Node `< 1.0.0`, version `> 2.7.0` and `< 4.0.0`; if Node `< 10.x.x`, version `> 2.7.0` and `< 6.0.0`)
 
 While not required to run stdlib, the following dependencies **may** be required for testing, benchmarking, and general development:
 
@@ -62,6 +62,7 @@ Assuming the requisite language is present on the host machine, the following la
 -   [pydocstyle][pydocstyle]: Python docstring checker against PEP 257 (version `>= 2.0.0`)
 -   [lintr][lintr]: static code analysis for R (version `>= 1.0.0`)
 -   [shellcheck][shellcheck]: static code analysis for shell scripts (version `>= 0.5.0`; to install on OS X, either install [Homebrew][homebrew] as a prerequisite or install [shellcheck][shellcheck] manually)
+-   [cppcheck][cppcheck]: C/C++ static code analysis (version `>= 2.5`).
 
 The following external libraries can be automatically downloaded and compiled from source using `make` (see [installation](#installation)):
 
@@ -126,25 +127,7 @@ $ cd stdlib
 
 ## Installation
 
-To install external libraries (**optional**),
-
-<!-- run-disable -->
-
-```bash
-$ make install-deps
-```
-
-While external library dependencies are not always required, installing these dependencies may aid development and unlock performance benefits, especially when developing numerical computation facilities. Note, however, that installing external library dependencies may take considerable time (>30 minutes).
-
-To install language dependencies (**optional**),
-
-<!-- run-disable -->
-
-```bash
-$ make install-lang-deps
-```
-
-To install development dependencies (e.g., [Node.js][node-js] module dependencies),
+To install dependencies (e.g., [Node.js][node-js] module dependencies),
 
 <!-- run-disable -->
 
@@ -157,8 +140,10 @@ To run dependency diagnostics,
 <!-- run-disable -->
 
 ```bash
-$ make deps-info
+$ make deps-diagnostics
 ```
+
+which will check for various development dependencies. Depending on your host system, you may be missing one or more dependencies. For most day-to-day `stdlib` development, these dependencies are not necessary and, thus, you do not need to immediately install them. If you are focusing on certain development areas (e.g., adding new math functionality), you'll be able to install the various dependencies on a case-by-case basis (e.g., requisite C/C++ linters, reference libraries, et cetera) using project tooling. For now, feel free to move along, and, if you get stuck or have questions, feel free to reach out to one of the core project maintainers.
 
 To initialize the development environment,
 
@@ -172,17 +157,17 @@ Initializing the development environment configures [Git][git] hooks and other b
 
 ## Verification
 
-To verify your environment, run project tests.
+To verify your environment, run a sample of project tests.
 
 <!-- run-disable -->
 
 ```bash
-$ make test
-$ make examples
-$ make benchmark
+$ make TESTS_FILTER=".*/math/base/special/sin/.*" test
+$ make EXAMPLES_FILTER=".*/math/base/special/sin/.*" examples
+$ make BENCHMARKS_FILTER=".*/math/base/special/sin/.*" benchmark
 ```
 
-Note that each of the previous commands may take considerable time (>30 minutes). If your environment is properly configured, each command should exit without errors.
+If your environment is properly configured, each command should exit without errors.
 
 ## Update
 
@@ -357,17 +342,17 @@ For contribution guidelines, see the [contributing guide][stdlib-contributing].
 
 [git]: http://git-scm.com/
 
-[make]: https://www.gnu.org/software/make
+[make]: https://www.gnu.org/software/make/
 
 [bash]: https://www.gnu.org/software/bash/
 
 [zsh]: https://en.wikipedia.org/wiki/Z_shell
 
-[curl]: http://curl.haxx.se/
+[curl]: https://curl.se/
 
-[wget]: http://www.gnu.org/software/wget
+[wget]: https://www.gnu.org/software/wget/
 
-[fetch]: http://www.freebsd.org/cgi/man.cgi?fetch%281%29
+[fetch]: https://www.freebsd.org/cgi/man.cgi?fetch%281%29
 
 [node-js]: https://nodejs.org/en/
 
@@ -395,9 +380,11 @@ For contribution guidelines, see the [contributing guide][stdlib-contributing].
 
 [shellcheck]: https://github.com/koalaman/shellcheck
 
+[cppcheck]: http://cppcheck.sourceforge.net/
+
 [gcc]: http://gcc.gnu.org/
 
-[clang]: http://clang.llvm.org/
+[clang]: https://clang.llvm.org/
 
 [gfortran]: https://gcc.gnu.org/fortran/
 
@@ -413,7 +400,7 @@ For contribution guidelines, see the [contributing guide][stdlib-contributing].
 
 [openblas]: https://github.com/xianyi/OpenBLAS
 
-[electron]: https://electron.atom.io/
+[electron]: https://www.electronjs.org/
 
 [emscripten]: http://kripken.github.io/emscripten-site/index.html
 

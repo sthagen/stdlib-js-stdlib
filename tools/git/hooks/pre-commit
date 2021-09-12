@@ -46,6 +46,15 @@ eslint_tests_conf="${root}/etc/eslint/.eslintrc.tests.js"
 # Define the path to ESLint configuration file for linting benchmarks:
 eslint_benchmarks_conf="${root}/etc/eslint/.eslintrc.benchmarks.js"
 
+# Define the path to cppcheck configuration file for linting examples:
+cppcheck_examples_suppressions_list="${root}/etc/cppcheck/suppressions.examples.txt"
+
+# Define the path to cppcheck configuration file for linting test fixtures:
+cppcheck_tests_fixtures_suppressions_list="${root}/etc/cppcheck/suppressions.tests_fixtures.txt"
+
+# Define the path to cppcheck configuration file for linting benchmarks:
+cppcheck_benchmarks_suppressions_list="${root}/etc/cppcheck/suppressions.benchmarks.txt"
+
 
 # FUNCTIONS #
 
@@ -62,6 +71,11 @@ cleanup() {
 	echo '' >&2
 }
 
+# Runs initialization tasks.
+init() {
+	return 0
+}
+
 # Checks for non-ASCII filenames (to ensure cross platform portability).
 check_filenames() {
 	local num_files
@@ -76,7 +90,7 @@ check_filenames() {
 		against='HEAD'
 	fi
 	# We exploit the fact that the printable range starts with the space character and ends with the tilde. Note that the use of brackets around a `tr` range is okay here, (for portability to Solaris 10's /usr/bin/tr, it's even required), since the square bracket bytes happen to fall in the designated range.
-	num_files=$(git diff --cached --name-only --diff-filter=A -z "${against}" | LC_ALL=C tr -d '[ -~]\0' | wc -c)
+	num_files=$(git diff --cached --name-only --diff-filter=ACR -z "${against}" | LC_ALL=C tr -d '[ -~]\0' | wc -c)
 
 	if [[ "${num_files}" -ne 0 ]]; then
 		echo 'Error: Attempting to add a non-ASCII filename. Non-ASCII filenames limit cross-platform portability. Please rename offending files before committing.' >&2
@@ -90,8 +104,8 @@ run_lint() {
 	local changed_files
 	local files
 
-	# Get the set of changed files (added and modified):
-	changed_files=$(git diff --name-only --cached --diff-filter AM)
+	# Get the set of changed files (added, copied, modified, and renamed):
+	changed_files=$(git diff --name-only --cached --diff-filter ACMR)
 
 	# Lint filenames:
 	echo "${changed_files}" | "${lint_filenames}"
@@ -217,6 +231,74 @@ run_lint() {
 		fi
 	fi
 
+	# Lint C source files...
+	files=$(echo "${changed_files}" | grep '\.c$' | grep -v -e '/examples' -e '/test' -e '/benchmark' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		make check-c-linters > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Unable to lint C files. Ensure that linters are installed.' >&2
+		else
+			make FILES="${files}" lint-c-files > /dev/null >&2
+			if [[ "$?" -ne 0 ]]; then
+				echo '' >&2
+				echo 'C lint errors for source files.' >&2
+				return 1
+			fi
+		fi
+	fi
+
+	# Lint C examples files...
+	files=$(echo "${changed_files}" | grep '/examples/.*\.c$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		make check-c-linters > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Unable to lint C files. Ensure that linters are installed.' >&2
+		else
+			make C_LINTER=cppcheck CPPCHECK_SUPPRESSIONS_LIST="${cppcheck_examples_suppressions_list}" FILES="${files}" lint-c-files > /dev/null >&2
+			if [[ "$?" -ne 0 ]]; then
+				echo '' >&2
+				echo 'C lint errors for examples files.' >&2
+				return 1
+			fi
+		fi
+	fi
+
+	# Lint C benchmark files...
+	files=$(echo "${changed_files}" | grep '/benchmark/.*\.c$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		make check-c-linters > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Unable to lint C files. Ensure that linters are installed.' >&2
+		else
+			make C_LINTER=cppcheck CPPCHECK_SUPPRESSIONS_LIST="${cppcheck_benchmarks_suppressions_list}" FILES="${files}" lint-c-files > /dev/null >&2
+			if [[ "$?" -ne 0 ]]; then
+				echo '' >&2
+				echo 'C lint errors for benchmark files.' >&2
+				return 1
+			fi
+		fi
+	fi
+
+	# Lint C test fixtures files...
+	files=$(echo "${changed_files}" | grep '/test/fixtures/.*\.c$' | tr '\n' ' ')
+	if [[ -n "${files}" ]]; then
+		make check-c-linters > /dev/null >&2
+		if [[ "$?" -ne 0 ]]; then
+			echo '' >&2
+			echo 'Unable to lint C files. Ensure that linters are installed.' >&2
+		else
+			make C_LINTER=cppcheck CPPCHECK_SUPPRESSIONS_LIST="${cppcheck_tests_fixtures_suppressions_list}" FILES="${files}" lint-c-files > /dev/null >&2
+			if [[ "$?" -ne 0 ]]; then
+				echo '' >&2
+				echo 'C lint errors for test fixtures files.' >&2
+				return 1
+			fi
+		fi
+	fi
+
 	# Lint shell script files...
 	files=$(echo "${changed_files}" | while read -r file; do head -n1 "$file" | grep -q '^\#\!/usr/bin/env bash' && echo "$file"; done | tr '\n' ' ')
 	if [[ -n "${files}" ]]; then
@@ -263,6 +345,10 @@ run_lint() {
 
 # Main execution sequence.
 main() {
+	init
+	if [[ "$?" -ne 0 ]]; then
+		on_error 1
+	fi
 	check_filenames
 	if [[ "$?" -ne 0 ]]; then
 		on_error 1

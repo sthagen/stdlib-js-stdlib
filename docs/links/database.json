@@ -8,6 +8,17 @@
       "node.js"
     ]
   },
+  "http://cppcheck.sourceforge.net/": {
+    "id": "cppcheck",
+    "description": "A static analysis tool for C/C++ code.",
+    "short_url": "",
+    "keywords": [
+      "static analysis",
+      "lint",
+      "linter",
+      "c"
+    ]
+  },
   "http://creativecommons.org/licenses/by/4.0/": {
     "id": "cc-by-4.0",
     "description": "Creative Commons Attribution 4.0 International (CC BY 4.0) license.",
@@ -242,7 +253,7 @@
       "proxy"
     ]
   },
-  "http://ocp.hul.harvard.edu/dl/contagion/010164675": {
+  "https://curiosity.lib.harvard.edu/contagion/catalog/36-990101646750203941": {
     "id": "@nightingale:1859a",
     "description": "Library record for Florence Nightingale's polar area diagram of the sanitary history of the British army during the late war with Russia.",
     "short_url": "",
@@ -388,7 +399,7 @@
       "unittest"
     ]
   },
-  "http://tools.ietf.org/html/rfc5988": {
+  "https://datatracker.ietf.org/doc/html/rfc5988": {
     "id": "rfc-5988",
     "description": "An RFC describing web links.",
     "short_url": "",
@@ -421,7 +432,7 @@
       "types"
     ]
   },
-  "http://webassembly.org/": {
+  "https://webassembly.org/": {
     "id": "webassembly",
     "description": "Official website for WebAssembly, a portable compilation target for the Web.",
     "short_url": "",
@@ -1736,7 +1747,7 @@
       "dist"
     ]
   },
-  "https://electron.atom.io/": {
+  "https://www.electronjs.org/": {
     "id": "electron",
     "description": "Framework for building desktop applications with JavaScript, HTML, and CSS.",
     "short_url": "",
@@ -2675,7 +2686,7 @@
       "dispersion"
     ]
   },
-  "https://en.wikipedia.org/wiki/Inverse_Gamma_distribution": {
+  "https://en.wikipedia.org/wiki/Inverse-gamma_distribution": {
     "id": "invgamma-distribution",
     "description": "Wikipedia entry for the inverse gamma distribution.",
     "short_url": "",
@@ -4178,6 +4189,16 @@
       "linter",
       "linting",
       "markdown"
+    ]
+  },
+  "https://jsdelivr.com/": {
+    "id": "jsdelivr",
+    "description": "A content delivery network (CDN) for npm and GitHub.",
+    "short_url": "",
+    "keywords": [
+      "cdn",
+      "npm",
+      "github"
     ]
   },
   "https://julialang.org/": {
