@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -77,9 +77,19 @@ double tic() {
 }
 
 /**
-* Generates a random double on the interval [0,1].
+* Generates a random number on the interval [0,1].
 *
-* @return random double
+* @return random number
+*/
+float rand_float() {
+	int r = rand();
+	return (float)r / ( (float)RAND_MAX + 1.0f );
+}
+
+/**
+* Generates a random number on the interval [0,1].
+*
+* @return random number
 */
 double rand_double() {
 	int r = rand();

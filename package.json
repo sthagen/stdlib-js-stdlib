@@ -107,6 +107,7 @@
   },
   "devDependencies": {
     "0x": "^4.10.2",
+    "@kaciras/deasync": "^1.0.1",
     "@types/node": "^13.9.0",
     "ajv": "^5.2.2",
     "browser-pack-flat": "^3.0.0",
@@ -118,7 +119,8 @@
     "doctrine": "^3.0.0",
     "dtslint": "^3.3.0",
     "envify": "^4.0.0",
-    "eslint": "^6.4.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-node": "^11.1.0",
     "factor-bundle": "^2.5.0",
     "gh-pages": "^3.2.3",
     "istanbul": "^0.4.1",

@@ -201,7 +201,7 @@ $ npm install @stdlib/stdlib
 Once installed, stdlib packages can be individually required/imported to minimize load times and decrease bundle sizes. For example, to use `require`
 
 ```javascript
-var ndarray = require( '@stdlib/ndarray/ctor' );
+var ndarray = require( '@stdlib/ndarray/array' );
 
 var arr = ndarray( [ [ 1, 2 ], [ 3, 4 ] ] );
 // returns <ndarray>
@@ -212,7 +212,7 @@ and to use `import`
 <!-- run-disable -->
 
 ```javascript
-import ndarray from '@stdlib/ndarray/ctor';
+import ndarray from '@stdlib/ndarray/array';
 
 var arr = ndarray( [ [ 1, 2 ], [ 3, 4 ] ] );
 // returns <ndarray>
@@ -229,13 +229,13 @@ To install individual packages, replace forward slashes `/` after `@stdlib/` wit
 <!-- run-disable -->
 
 ```bash
-$ npm install @stdlib/ndarray-ctor
+$ npm install @stdlib/ndarray-array
 ```
 
 Once installed, individual packages can be required/imported. For example, to use `require`
 
 ```javascript
-var ndarray = require( '@stdlib/ndarray-ctor' );
+var ndarray = require( '@stdlib/ndarray-array' );
 
 var arr = ndarray( [ [ 1, 2 ], [ 3, 4 ] ] );
 // returns <ndarray>
@@ -246,7 +246,7 @@ and to use `import`
 <!-- run-disable -->
 
 ```javascript
-import ndarray from '@stdlib/ndarray-ctor';
+import ndarray from '@stdlib/ndarray-array';
 
 var arr = ndarray( [ [ 1, 2 ], [ 3, 4 ] ] );
 // returns <ndarray>
@@ -456,6 +456,50 @@ Already an expert?
     $ make init
     ```
 
+<!-- Project sponsors. If sponsors are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+* * *
+
+<section class="sponsors">
+
+## Sponsors
+
+stdlib development is generously supported by the following sponsors...
+
+<div class="image" align="center">
+    <a href="https://labs.quansight.org/">
+        <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@2719e1d3ecab2cc29985bca35fd33594e65adb55/docs/assets/sponsors/quansight_labs_logo.png" alt="Quansight Labs">
+    </a>
+    <br>
+</div>
+
+</section>
+
+<!-- /.sponsors -->
+
+<!-- Project users. If users are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+* * *
+
+<section class="users">
+
+## Users
+
+The following organizations and key stakeholders trust and depend on stdlib...
+
+<div class="image" align="center">
+    <a href="https://www.cmu.edu/">
+        <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@1c8c7dbc9d081eeb13e16c62764f27a65c6553f8/docs/assets/misc/cmu_logo.png" alt="Carnegie Mellon University">
+    </a>
+    <br>
+</div>
+
+Does your organization or company use stdlib? If so, we'd love to hear from you!
+
+</section>
+
+<!-- /.users -->
+
 * * *
 
 ## License
@@ -464,7 +508,7 @@ See [LICENSE][stdlib-license].
 
 ## Copyright
 
-Copyright © 2016-2021. The Stdlib [Authors][stdlib-authors].
+Copyright © 2016-2022. The Stdlib [Authors][stdlib-authors].
 
 </section>
 
@@ -516,14 +560,6 @@ Copyright © 2016-2021. The Stdlib [Authors][stdlib-authors].
 </section>
 
 <!-- /.badges> -->
-
-<!-- Project sponsors. If sponsors are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="sponsors">
-
-</section>
-
-<!-- /.sponsors -->
 
 <!-- Project acknowledgments. If section is included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
