@@ -72,14 +72,14 @@ jobs:
         timeout-minutes: 5
 
       # Get list of changed files:
-      - name: Get list of changed files
+      - name: 'Get list of changed files'
         id: changed-files
         uses: tj-actions/changed-files@v32
         with:
           separator: ' '
 
       # Lint file names
-      - name: Lint file names
+      - name: 'Lint file names'
         run: |
           # Determine root directory:
           root=$(git rev-parse --show-toplevel)
@@ -181,8 +181,19 @@ jobs:
         run: |
           files=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | tr ' ' '\n' | grep -E '\.py$' | tr '\n' ' ')
           if [[ -n "${files}" ]]; then
+            # Install Python dependencies:
+            make install-deps-python
+
+            # Lint Python files:
             make lint-python-files FILES="${files}"
           fi
+
+      # Setup R:
+      - name: 'Setup R'
+        if: success() || failure()
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '3.5.3'
 
       # Lint R files:
       - name: 'Lint R files'
@@ -190,6 +201,10 @@ jobs:
         run: |
           files=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | tr ' ' '\n' | grep -E '\.R$' | tr '\n' ' ')
           if [[ -n "${files}" ]]; then
+             # Install R dependencies:
+            make install-deps-r
+
+            # Lint R files:
             make lint-r-files FILES="${files}"
           fi
 
@@ -233,13 +248,13 @@ jobs:
             make lint-c-files FILES="${files}" CPPCHECK_SUPPRESSIONS_LIST="${cppcheck_benchmarks_suppressions_list}"
           fi
 
-      # Lint TypeScript declaration files:
-      - name: 'Lint TypeScript declaration files'
+      # Lint TypeScript declarations files:
+      - name: 'Lint TypeScript declarations files'
         if: success() || failure()
         run: |
           files=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | tr ' ' '\n' | grep -E '\.d\.ts$' | tr '\n' ' ')
           if [[ -n "${files}" ]]; then
-            make lint-typescript-declaration-files FILES="${files}"
+            make lint-typescript-declarations-files FILES="${files}"
           fi
 
       # Lint license headers:
