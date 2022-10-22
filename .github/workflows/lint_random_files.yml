@@ -83,7 +83,7 @@ jobs:
     steps:
       # Checkout the repository:
       - name: 'Checkout repository'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Specify whether to remove untracked files before checking out the repository:
           clean: true
@@ -97,7 +97,7 @@ jobs:
 
       # Install Node.js:
       - name: 'Install Node.js'
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16' # 'lts/*'
         timeout-minutes: 5
@@ -169,7 +169,7 @@ jobs:
             shuf -n ${{ github.event.inputs.num || 100 }} | tr '\n' ','"
           echo "command: ${command}"
           files=$(eval ${command})
-          echo "::set-output name=files::$files"
+          echo "files=$files" >> $GITHUB_OUTPUT
 
       # Lint file names
       - name: 'Lint file names'
@@ -368,6 +368,11 @@ jobs:
           if [[ -n "${files}" ]]; then
             make lint-license-headers-files FILES="${files}"
           fi
+
+      # Disable Git hooks:
+      - name: 'Disable Git hooks'
+        run: |
+          rm -rf .git/hooks
 
       # Create a pull request with the fixes (if applicable):
       - name: 'Create pull request'
