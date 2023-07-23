@@ -67,6 +67,7 @@ This is the GitHub repository of stdlib source code and documentation. For help 
 
 ### External Resources
 
+-   [**Open Collective**][open-collective-stdlib]
 -   [**Twitter**][stdlib-twitter]
 -   [**Gitter**][stdlib-gitter]
 
@@ -574,11 +575,15 @@ Already an expert?
 stdlib development is generously supported by the following sponsors...
 
 <div class="image" align="center">
+    <br>
     <a href="https://labs.quansight.org/">
         <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@2719e1d3ecab2cc29985bca35fd33594e65adb55/docs/assets/sponsors/quansight_labs_logo.png" alt="Quansight Labs">
     </a>
     <br>
+    <br>
 </div>
+
+Are you interested in supporting stdlib? If so, join our [Open Collective][open-collective-stdlib]!
 
 </section>
 
@@ -595,9 +600,11 @@ stdlib development is generously supported by the following sponsors...
 The following organizations and key stakeholders trust and depend on stdlib...
 
 <div class="image" align="center">
+    <br>
     <a href="https://www.cmu.edu/">
         <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@1c8c7dbc9d081eeb13e16c62764f27a65c6553f8/docs/assets/misc/cmu_logo.png" alt="Carnegie Mellon University">
     </a>
+    <br>
     <br>
 </div>
 
@@ -796,6 +803,8 @@ Test and build infrastructure is generously provided by the following services:
 [stdlib-bundles]: https://github.com/stdlib-js/stdlib/tree/develop/dist
 
 [stdlib-code-coverage]: https://codecov.io/github/stdlib-js/stdlib/branch/develop
+
+[open-collective-stdlib]: https://opencollective.com/stdlib
 
 [stdlib-twitter]: https://twitter.com/stdlibjs
 
