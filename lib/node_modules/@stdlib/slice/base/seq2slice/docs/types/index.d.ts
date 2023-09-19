@@ -29,7 +29,7 @@ interface ErrorObject {
 	/**
 	* Error code.
 	*/
-	code: 'ERR_INVALID_SUBSEQUENCE' | 'ERR_INVALID_INCREMENT' | 'ERR_OUT_OF_BOUNDS';
+	code: 'ERR_SLICE_INVALID_SUBSEQUENCE' | 'ERR_SLICE_INVALID_INCREMENT' | 'ERR_SLICE_OUT_OF_BOUNDS';
 }
 
 /**
@@ -68,7 +68,7 @@ type SliceResult = Slice<number, number | null, number> | ErrorObject;
 *
 * -   When `len` is zero, the function always returns a Slice object equivalent to `0:0:<increment>`.
 *
-* -   The function returns an error object if provided in invalid subsequence string.
+* -   The function returns an error object if provided an invalid subsequence string.
 *
 * -   If `strict` is `true`, the function returns an error object if provided a subsequence string which exceeds index bounds.
 *
