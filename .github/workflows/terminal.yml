@@ -54,8 +54,8 @@ jobs:
 
       # Install Node.js:
       - name: 'Install Node.js'
-        # Pin action to full length commit SHA corresponding to v3.8.1
-        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d
+        # Pin action to full length commit SHA
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: '16' # 'lts/*'
         timeout-minutes: 5
@@ -74,5 +74,5 @@ jobs:
 
       # Setup a terminal session:
       - name: 'Setup upterm session'
-        # Pin action to full length commit SHA corresponding to v1.0.0
-        uses: lhotari/action-upterm@b0357f23233f5ea6d58947c0c402e0631bab7334
+        # Pin action to full length commit SHA
+        uses: lhotari/action-upterm@b0357f23233f5ea6d58947c0c402e0631bab7334 # v1.0.0
