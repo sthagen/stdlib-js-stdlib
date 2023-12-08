@@ -109,9 +109,9 @@ jobs:
       # Install Node.js:
       - name: 'Install Node.js'
         # Pin action to full length commit SHA
-        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
         with:
-          node-version: '16' # 'lts/*'
+          node-version: 20 # 'lts/*'
         timeout-minutes: 5
 
       # Install dependencies (accounting for possible network failures, etc, when installing node module dependencies):
@@ -130,6 +130,7 @@ jobs:
       - name: 'Get list of changed directories'
         if: github.event_name != 'workflow_dispatch'
         id: changed-directories
+        continue-on-error: true
         run: |
           if [ -n "${{ github.event.pull_request.number }}" ]; then
             # Get the list of changed files in pull request:
@@ -137,11 +138,11 @@ jobs:
             files=$(git diff --diff-filter=AM --name-only $ancestor_commit ${{ github.event.pull_request.head.sha }})
           else
             # Get changed files by comparing the current commit to the commit before the push event or with its parent:
-              if [ "${{ github.event.before }}" == "0000000000000000000000000000000000000000" ]; then
-                files=$(git diff --diff-filter=AM --name-only HEAD~ ${{ github.event.after }})
-              else
-                files=$(git diff --diff-filter=AM --name-only ${{ github.event.before }} ${{ github.event.after }})
-              fi
+            if [ "${{ github.event.before }}" == "0000000000000000000000000000000000000000" ]; then
+              files=$(git diff --diff-filter=AM --name-only HEAD~ ${{ github.event.after }})
+            else
+              files=$(git diff --diff-filter=AM --name-only ${{ github.event.before }} ${{ github.event.after }})
+            fi
           fi
           directories=$(for file in $files; do dirname $file; done | uniq | tr '\n' ' ' | sed 's/ $//')
           echo "directories=${directories}" >> $GITHUB_OUTPUT
@@ -194,7 +195,7 @@ jobs:
       - name: 'Post report as comment to PR'
         if: github.event_name == 'pull_request'
         # Pin action to full length commit SHA
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           github-token: ${{ secrets.CHATBOT_GITHUB_TOKEN }}
           script: |
@@ -209,7 +210,7 @@ jobs:
       - name: 'Post report as comment to commit'
         if: github.event_name == 'push'
         # Pin action to full length commit SHA
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           github-token: ${{ secrets.CHATBOT_GITHUB_TOKEN }}
           script: |
