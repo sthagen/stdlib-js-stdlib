@@ -1,7 +1,7 @@
 {
-  "name": "@stdlib/complex/base",
+  "name": "@stdlib/complex/base/assert",
   "version": "0.0.0",
-  "description": "Base (i.e., lower-level) complex number functions.",
+  "description": "Base complex number assert functions.",
   "license": "Apache-2.0",
   "author": {
     "name": "The Stdlib Authors",
@@ -56,6 +56,7 @@
     "number",
     "namespace",
     "ns",
-    "base"
+    "base",
+    "assert"
   ]
 }
