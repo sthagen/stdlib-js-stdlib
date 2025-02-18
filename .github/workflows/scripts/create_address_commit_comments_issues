@@ -211,8 +211,7 @@ issue_exists_for_commit() {
 	local total_count
 	total_count=$(echo "$response" | jq -r '.total_count')
 
-	if [ "$total_count" -gt 0 ]; then
-		# An issue already exists:
+	if [ "$total_count" = "null" ] || [ "$total_count" -gt 0 ]; then
 		return 0
 	else
 		return 1
