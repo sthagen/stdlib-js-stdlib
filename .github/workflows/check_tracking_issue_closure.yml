@@ -1,7 +1,7 @@
 #/
 # @license Apache-2.0
 #
-# Copyright (c) 2021 The Stdlib Authors.
+# Copyright (c) 2025 The Stdlib Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,31 +17,34 @@
 #/
 
 # Workflow name:
-name: first_time_greeting
+name: check_tracking_issue_closure
 
 # Workflow triggers:
-on: [pull_request_target, issues]
+on:
+  # Run on a schedule:
+  schedule:
+    # Run every 12 hours:
+    - cron: '0 */12 * * *'
 
-# Global permissions:
-permissions:
-  # Do not give the workflow any permissions:
-  contents: none
+  # Allow manual triggering:
+  workflow_dispatch:
 
 # Workflow jobs:
 jobs:
+  # Define job to check PRs for tracking issue closure:
+  check_prs:
+    # Define job name:
+    name: 'Check PRs for tracking issue closure'
 
-  # Define a job for commenting on first-time contributions...
-  greeting:
-
-    # Define a display name:
-    name: 'Welcome new contributors'
+    # Define job permissions:
+    permissions:
+      contents: read
 
     # Define the type of virtual host machine:
     runs-on: ubuntu-latest
 
-    # Define the sequence of job steps...
+    # Define the sequence of job steps:
     steps:
-
       # Checkout the repository:
       - name: 'Checkout repository'
         # Pin action to full length commit SHA
@@ -49,14 +52,12 @@ jobs:
         with:
           # Ensure we have access to the scripts directory:
           sparse-checkout: |
-              .github/workflows/scripts
+            .github/workflows/scripts
           sparse-checkout-cone-mode: false
-        timeout-minutes: 10
 
-      # Greet first-time contributors:
-      - name: 'Greet first-time contributors'
-        env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          GITHUB_TOKEN: ${{ secrets.STDLIB_BOT_PAT_REPO_WRITE }}
+      # Run the script to check PRs for tracking issue closure:
+      - name: 'Check PRs for tracking issue closure'
         run: |
-          . "$GITHUB_WORKSPACE/.github/workflows/scripts/first_time_greeting" $ISSUE_NUMBER
+          . "$GITHUB_WORKSPACE/.github/workflows/scripts/check_tracking_issue_closure" 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.STDLIB_BOT_PAT_REPO_WRITE }}
