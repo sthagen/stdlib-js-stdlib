@@ -99,3 +99,5 @@ jobs:
             *Please review the above commit message and make any necessary adjustments.*
 
             ${{ steps.commit_message.outputs.has_tracking_issue == 'true' && '⚠️ **Action Required**: This PR references tracking issues. Please update the PR description to replace any "Closes", "Fixes", or "Resolves" keywords with "Ref" when referencing these issues.' || '' }}
+
+            <!-- PR_COMMIT_MESSAGE -->
