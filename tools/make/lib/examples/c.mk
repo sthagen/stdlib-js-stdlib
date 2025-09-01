@@ -113,12 +113,12 @@ examples-c-files:
 # make examples-random-c RANDOM_SELECTION_SIZE=10
 #/
 examples-random-c: $(NODE_MODULES)
-	$(QUIET) make -s list-random-lib-pkgs PACKAGES_PATTERN='binding.gyp' | while read -r pkg; do \
+	$(QUIET) $(MAKE) -f $(this_file) -s list-random-lib-pkgs PACKAGES_PATTERN='binding.gyp' | while read -r pkg; do \
 		echo ""; \
 		echo "Running example: $$pkg"; \
 		NODE_ENV="$(NODE_ENV_EXAMPLES)" \
 		NODE_PATH="$(NODE_PATH_EXAMPLES)" \
-		make examples-c EXAMPLES_FILTER="$$pkg/.*" || exit 1; \
+		$(MAKE) -f $(this_file) examples-c EXAMPLES_FILTER="$$pkg/.*" || exit 1; \
 	done
 
 .PHONY: examples-random-c

@@ -87,22 +87,22 @@ benchmark-javascript-files: $(NODE_MODULES)
 #/
 benchmark-random-javascript: $(NODE_MODULES)
 ifeq ($(BUILD_NATIVE_ADDONS), true)
-	$(QUIET) make -s list-random-lib-pkgs | while read -r pkg; do \
+	$(QUIET) $(MAKE) -f $(this_file) -s list-random-lib-pkgs | while read -r pkg; do \
 		echo ""; \
 		echo "Running benchmark: $$pkg"; \
 		pattern=$$(echo "$$pkg" | sed -n -e 's/^.*\(@stdlib\)/\1/p') \
-		NODE_ADDONS_PATTERN="$$pattern" make install-node-addons; \
+		NODE_ADDONS_PATTERN="$$pattern" $(MAKE) -f $(this_file) install-node-addons; \
 		NODE_ENV="$(NODE_ENV_BENCHMARK)" \
 		NODE_PATH="$(NODE_PATH_BENCHMARK)" \
-		make benchmark-javascript BENCHMARKS_FILTER="$$pkg/.*" || exit 1; \
+		$(MAKE) -f $(this_file) benchmark-javascript BENCHMARKS_FILTER="$$pkg/.*" || exit 1; \
 	done
 else
-	$(QUIET) make -s list-random-lib-pkgs | while read -r pkg; do \
+	$(QUIET) $(MAKE) -f $(this_file) -s list-random-lib-pkgs | while read -r pkg; do \
 		echo ""; \
 		echo "Running benchmark: $$pkg"; \
 		NODE_ENV="$(NODE_ENV_BENCHMARK)" \
 		NODE_PATH="$(NODE_PATH_BENCHMARK)" \
-		make benchmark-javascript BENCHMARKS_FILTER="$$pkg/.*" || exit 1; \
+		$(MAKE) -f $(this_file) benchmark-javascript BENCHMARKS_FILTER="$$pkg/.*" || exit 1; \
 	done
 endif
 
