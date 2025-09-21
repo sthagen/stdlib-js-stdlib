@@ -65,8 +65,11 @@ jobs:
           # Specify whether to download Git-LFS files:
           lfs: false
 
-          # Avoid storing GitHub token in local Git configuration:
-          persist-credentials: false
+          # Provide a GitHub token for authentication
+          token: ${{ secrets.STDLIB_BOT_PAT_REPO_WRITE }}
+
+          # Store GitHub token in local Git configuration:
+          persist-credentials: true
         timeout-minutes: 10
 
       # Install Node.js:
