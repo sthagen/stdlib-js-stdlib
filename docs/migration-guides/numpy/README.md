@@ -48,7 +48,7 @@ limitations under the License.
 | Filter an array according to a predicate function | `x[np.vectorize(predicate)(x)]` | [`filter(x, predicate)`][@stdlib/ndarray/filter] |
 | Find the index of the first element which equals a specified value | `np.argmax(x == v, axis=dim)` | [`indexOf(x, v, {dim: dim})`][@stdlib/blas/ext/index-of] |
 | Find the index of the last element which equals a specified value | `x.shape[dim]-1-np.argmax(np.flip(x, axis=dim) == v, axis=dim)` | [`lastIndexOf(x, v, {dim: dim})`][@stdlib/blas/ext/last-index-of] |
-| Flatten an array to a desired depth | `np.reshape(x, newshape)`] | [`flatten(x, {depth: depth})`][@stdlib/ndarray/flatten] |
+| Flatten an array to a desired depth | `np.reshape(x, newshape)` | [`flatten(x, {depth: depth})`][@stdlib/ndarray/flatten] |
 | Flatten an array starting from a specific dimension | `np.reshape(x, x.shape[:dim] + (-1,))` | [`flattenFrom(x, dim)`][@stdlib/ndarray/flatten-from] |
 | Prepend a specified number of singleton dimensions | `np.reshape(x, (1,)*n + x.shape)` | [`prependSingletonDimensions(x, n)`][@stdlib/ndarray/prepend-singleton-dimensions] |
 | Prepend a zero-filled array of the same shape along a specified dimension | `np.concat((np.zeros_like(x), x), axis=dim)` | [`concat([zerosLike(x), x], {dim: dim})`][@stdlib/ndarray/concat] |
